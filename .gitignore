@@ -1,0 +1,34 @@
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node (used only for icon generation — not part of extension)
+node_modules/
+npm-debug.log*
+
+# Build artifacts
+dist/
+*.zip
+
+# Temp icon generation tools
+/tmp/icontools/
+
+# Claude Code internal session files
+.claude/
+
+# Internal dev/debug docs (not needed in public repo)
+DEBUG_BLANK_SCREENSHOT.md
+CRITICAL_FIXES_APPLIED.md
+RELOAD_GUIDE.md
+TESTING_GUIDE.md

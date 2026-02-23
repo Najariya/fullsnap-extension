@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FullSnap - Screenshot Viewer</title>
+  <link rel="stylesheet" href="viewer.css">
+</head>
+<body>
+  <!-- Top toolbar -->
+  <div class="toolbar" id="toolbar">
+    <div class="toolbar-left">
+      <div class="brand">
+        <img src="../icons/icon-32.png" alt="" class="brand-icon">
+        <span class="brand-name">FullSnap</span>
+      </div>
+    </div>
+
+    <div class="toolbar-center">
+      <!-- Export buttons -->
+      <div class="btn-group">
+        <button id="btn-download-png" class="toolbar-btn" title="Download as PNG">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 10v3h12v-3M8 2v8m-3-3l3 3 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>PNG</span>
+        </button>
+        <button id="btn-download-jpeg" class="toolbar-btn" title="Download as JPEG">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 10v3h12v-3M8 2v8m-3-3l3 3 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>JPEG</span>
+        </button>
+        <button id="btn-download-pdf" class="toolbar-btn" title="Save as PDF">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 1h5l4 4v10H4V1z" stroke="currentColor" stroke-width="1.3"/><path d="M9 1v4h4" stroke="currentColor" stroke-width="1.3"/><path d="M6 9h4M6 11h3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          <span>PDF</span>
+        </button>
+        <button id="btn-copy" class="toolbar-btn" title="Copy to clipboard">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="4" y="4" width="9" height="9" rx="1" stroke="currentColor" stroke-width="1.3"/><path d="M11 4V3a1 1 0 00-1-1H4a1 1 0 00-1 1v6a1 1 0 001 1h1" stroke="currentColor" stroke-width="1.3"/></svg>
+          <span>Copy</span>
+        </button>
+        <button id="btn-filters" class="toolbar-btn" title="Image filters">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.3"/><path d="M8 2.5 A5.5 5.5 0 0 1 8 13.5" fill="currentColor" opacity="0.3"/></svg>
+          <span>Filters</span>
+        </button>
+      </div>
+
+      <div class="separator"></div>
+
+      <!-- Annotation tools -->
+      <div class="btn-group" id="annotation-tools">
+        <button id="tool-draw" class="toolbar-btn tool-btn" data-tool="draw" title="Freehand draw">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 14c2-2 4-6 6-8s3-1 3 1-3 6-5 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        </button>
+        <button id="tool-arrow" class="toolbar-btn tool-btn" data-tool="arrow" title="Arrow">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3m0 0H7m6 0v6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button id="tool-text" class="toolbar-btn tool-btn" data-tool="text" title="Add text">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 4V2h10v2M8 2v12M6 14h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button id="tool-highlight" class="toolbar-btn tool-btn" data-tool="highlight" title="Highlight">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="8" width="12" height="5" rx="1" fill="currentColor" opacity="0.3"/><path d="M4 7V3h8v4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        </button>
+        <button id="tool-blur" class="toolbar-btn tool-btn" data-tool="blur" title="Blur (redact sensitive info)">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="5" cy="5" r="1" fill="currentColor"/><circle cx="11" cy="5" r="1" fill="currentColor"/><circle cx="8" cy="8" r="1" fill="currentColor"/><circle cx="5" cy="11" r="1" fill="currentColor"/><circle cx="11" cy="11" r="1" fill="currentColor"/></svg>
+        </button>
+
+        <div class="separator"></div>
+
+        <input type="color" id="annotation-color" value="#FF3B30" class="color-picker" title="Annotation color">
+        <select id="annotation-stroke" class="stroke-select" title="Stroke width">
+          <option value="2">Thin</option>
+          <option value="3" selected>Medium</option>
+          <option value="5">Thick</option>
+          <option value="8">Extra thick</option>
+        </select>
+
+        <div class="separator"></div>
+
+        <button id="btn-undo" class="toolbar-btn" title="Undo (Ctrl+Z)">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l-3 3 3 3M1 9h9a4 4 0 000-8H7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button id="btn-redo" class="toolbar-btn" title="Redo (Ctrl+Shift+Z)">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M12 6l3 3-3 3M15 9H6a4 4 0 010-8h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button id="btn-clear-annotations" class="toolbar-btn" title="Clear all annotations">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M5 4V3a1 1 0 011-1h4a1 1 0 011 1v1M6 7v4M10 7v4M4 4l1 9h6l1-9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="toolbar-right">
+      <!-- Zoom controls -->
+      <div class="zoom-controls">
+        <button id="btn-zoom-out" class="toolbar-btn icon-only" title="Zoom out (-)">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.3"/><path d="M5 7h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M11 11l3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        </button>
+        <span id="zoom-display" class="zoom-display">100%</span>
+        <button id="btn-zoom-in" class="toolbar-btn icon-only" title="Zoom in (+)">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.3"/><path d="M5 7h4M7 5v4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M11 11l3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <button id="btn-theme" class="toolbar-btn icon-only" title="Toggle dark/light theme">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" id="theme-icon"><circle cx="8" cy="8" r="4" stroke="currentColor" stroke-width="1.3"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.05 3.05l1.4 1.4M11.55 11.55l1.4 1.4M3.05 12.95l1.4-1.4M11.55 4.45l1.4-1.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+      </button>
+      <button id="btn-feedback" class="toolbar-btn icon-only" title="Share your feedback" style="color: #FF9500;">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 14c3.3 0 6-2.2 6-5s-2.7-5-6-5-6 2.2-6 5c0 1.4.6 2.6 1.5 3.5L2 15l3-1.5c1 .3 2 .5 3 .5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><circle cx="6" cy="9" r=".8" fill="currentColor"/><circle cx="8" cy="9" r=".8" fill="currentColor"/><circle cx="10" cy="9" r=".8" fill="currentColor"/></svg>
+      </button>
+      <button id="btn-settings" class="toolbar-btn icon-only" title="Settings">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6.5 2h3l.5 1.5c.3.1.6.3.9.5l1.5-.5 1.5 2.5-1.2 1.2c0 .3 0 .6 0 .8l1.2 1.2-1.5 2.5-1.5-.5c-.3.2-.6.4-.9.5L9.5 14h-3l-.5-1.5c-.3-.1-.6-.3-.9-.5l-1.5.5L2 10l1.2-1.2c0-.3 0-.5 0-.8L2 6.8l1.5-2.5 1.5.5c.3-.2.6-.4.9-.5L6.5 2z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="capture-info-banner" class="capture-info-banner hidden"></div>
+
+  <!-- Settings panel -->
+  <div id="settings-panel" class="floating-panel hidden" style="top: 60px; right: 20px;">
+    <div class="panel-header" id="settings-header">
+      <span>⚙️ Settings</span>
+      <button class="panel-close" id="settings-close-btn" title="Close">×</button>
+    </div>
+    <div class="panel-body">
+      <div class="filter-control">
+        <label style="cursor: pointer;">
+          <input type="checkbox" id="show-timestamp-checkbox" checked>
+          <span style="margin-left: 8px;">Add timestamp to screenshots</span>
+        </label>
+      </div>
+      <div class="filter-control">
+        <label style="cursor: pointer;">
+          <input type="checkbox" id="show-url-checkbox" checked>
+          <span style="margin-left: 8px;">Add page URL to screenshots</span>
+        </label>
+      </div>
+      <div class="filter-control" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border);">
+        <label style="font-size: 11px; color: var(--text-tertiary);">
+          Keyboard Shortcuts:
+        </label>
+        <div id="kbd-shortcuts-display" style="font-size: 11px; color: var(--text-secondary); margin-top: 6px; line-height: 1.8;">
+          <!-- Populated by viewer.js updateShortcutDisplay() on load -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JPEG quality dialog (shown when downloading JPEG) -->
+  <div id="jpeg-dialog" class="dialog-overlay hidden">
+    <div class="dialog">
+      <h3>JPEG Quality</h3>
+      <div class="dialog-body">
+        <input type="range" id="jpeg-quality-slider" min="60" max="100" value="90">
+        <span id="jpeg-quality-label">90%</span>
+      </div>
+      <div class="dialog-footer">
+        <button id="jpeg-cancel" class="dialog-btn secondary">Cancel</button>
+        <button id="jpeg-confirm" class="dialog-btn primary">Download</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PDF options dialog -->
+  <div id="pdf-dialog" class="dialog-overlay hidden">
+    <div class="dialog">
+      <h3>Save as PDF</h3>
+      <div class="dialog-body">
+        <label>Page size:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="pdf-size" value="a4" checked> A4</label>
+          <label><input type="radio" name="pdf-size" value="letter"> Letter</label>
+          <label><input type="radio" name="pdf-size" value="full"> Full size (single page)</label>
+        </div>
+      </div>
+      <div class="dialog-footer">
+        <button id="pdf-cancel" class="dialog-btn secondary">Cancel</button>
+        <button id="pdf-confirm" class="dialog-btn primary">Save PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filters floating panel -->
+  <div id="filters-panel" class="floating-panel hidden" style="top: 60px; right: 20px;">
+    <div class="panel-header" id="filters-header">
+      <span>🎨 Filters</span>
+      <button class="panel-close" id="filters-close-btn" title="Close">×</button>
+    </div>
+    <div class="panel-body">
+      <div class="filter-control">
+        <label>Brightness: <span id="brightness-value">0</span></label>
+        <input type="range" id="brightness-slider" min="-100" max="100" value="0" step="1">
+      </div>
+      <div class="filter-control">
+        <label>Contrast: <span id="contrast-value">0</span></label>
+        <input type="range" id="contrast-slider" min="-100" max="100" value="0" step="1">
+      </div>
+      <div class="filter-control">
+        <label>Saturation: <span id="saturation-value">0</span></label>
+        <input type="range" id="saturation-slider" min="-100" max="100" value="0" step="1">
+      </div>
+      <div class="filter-control">
+        <label>
+          <input type="checkbox" id="grayscale-checkbox"> Grayscale
+        </label>
+      </div>
+      <div class="filter-control">
+        <label>
+          <input type="checkbox" id="sepia-checkbox"> Sepia
+        </label>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <button id="filters-reset" class="panel-btn secondary">Reset</button>
+      <button id="filters-save" class="panel-btn primary">Save & Download</button>
+    </div>
+  </div>
+
+  <!-- Toast notification -->
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- Main canvas area -->
+  <div class="canvas-container" id="canvas-container">
+    <div class="canvas-wrapper" id="canvas-wrapper">
+      <canvas id="screenshot-canvas"></canvas>
+      <canvas id="annotation-canvas"></canvas>
+    </div>
+  </div>
+
+  <!-- Metadata overlay bar: fixed to the visual bottom of the viewport, shows URL and/or date-time -->
+  <div id="viewer-metadata-bar" class="viewer-meta-bar hidden"></div>
+
+  <!-- Status bar -->
+  <div class="statusbar" id="statusbar">
+    <span id="status-dimensions">-</span>
+    <span class="status-sep">|</span>
+    <span id="status-size">-</span>
+    <span class="status-sep">|</span>
+    <span>Zoom: <span id="status-zoom">100%</span></span>
+    <div class="statusbar-right">
+      <div id="part-controls" class="part-controls hidden">
+        <button id="btn-part-prev" class="status-btn" title="Previous part">Prev</button>
+        <span id="part-indicator" class="part-indicator">Part 1 / 1</span>
+        <button id="btn-part-next" class="status-btn" title="Next part">Next</button>
+      </div>
+      <button id="btn-fit" class="status-btn" title="Fit to window">Fit</button>
+      <button id="btn-100" class="status-btn" title="100% zoom">100%</button>
+    </div>
+  </div>
+
+  <!-- Loading state -->
+  <div id="loading" class="loading">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Loading screenshot...</div>
+  </div>
+
+  <!-- Rate / Feedback banner -->
+  <div id="feedback-banner" class="feedback-banner hidden">
+    <div class="feedback-inner">
+      <div class="feedback-stars">
+        <span class="fb-star" data-rating="1">&#9733;</span>
+        <span class="fb-star" data-rating="2">&#9733;</span>
+        <span class="fb-star" data-rating="3">&#9733;</span>
+        <span class="fb-star" data-rating="4">&#9733;</span>
+        <span class="fb-star" data-rating="5">&#9733;</span>
+      </div>
+      <span class="feedback-text">Enjoying FullSnap? Rate us on the Chrome Web Store!</span>
+      <div class="feedback-actions">
+        <button id="feedback-rate-btn" class="feedback-btn primary">Rate Now</button>
+        <button id="feedback-dismiss-btn" class="feedback-btn ghost">Maybe Later</button>
+      </div>
+    </div>
+    <button id="feedback-close-btn" class="feedback-close" title="Dismiss">&times;</button>
+  </div>
+
+  <script src="../shared/constants.js"></script>
+  <script src="../shared/utils.js"></script>
+  <script src="../shared/capture-store.js"></script>
+  <script src="../lib/jspdf.umd.min.js"></script>
+  <script src="annotation.js"></script>
+  <script src="viewer.js"></script>
+</body>
+</html>

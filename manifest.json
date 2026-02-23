@@ -1,0 +1,66 @@
+{
+  "manifest_version": 3,
+  "name": "FullSnap - Full Page Screenshot",
+  "version": "1.0.0",
+  "description": "One-click full-page screenshots with annotation, PDF export, and clipboard copy. No account required. Privacy-first.",
+
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png"
+    },
+    "default_title": "FullSnap - Capture Screenshot"
+  },
+
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
+
+  "permissions": [
+    "activeTab",
+    "offscreen",
+    "scripting",
+    "storage"
+  ],
+
+  "host_permissions": [
+    "<all_urls>"
+  ],
+
+  "web_accessible_resources": [
+    {
+      "resources": ["content/progress-overlay.css"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+
+  "commands": {
+    "capture-full-page": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+S",
+        "mac": "Command+Shift+S",
+        "windows": "Ctrl+Shift+S",
+        "linux": "Ctrl+Shift+S"
+      },
+      "description": "Capture full page screenshot"
+    },
+    "capture-visible": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+V",
+        "mac": "Command+Shift+V",
+        "windows": "Ctrl+Shift+V",
+        "linux": "Ctrl+Shift+V"
+      },
+      "description": "Capture visible area"
+    }
+  }
+}

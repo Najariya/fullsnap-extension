@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup">
+    <div class="header">
+      <img src="../icons/icon-32.png" alt="FullSnap" class="logo">
+      <span class="title">FullSnap</span>
+    </div>
+
+    <div class="actions">
+      <button id="btn-full-page" class="action-btn primary">
+        <div class="btn-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <rect x="3" y="1" width="14" height="18" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="6" y1="6" x2="14" y2="6" stroke="currentColor" stroke-width="1.2"/>
+            <line x1="6" y1="9" x2="14" y2="9" stroke="currentColor" stroke-width="1.2"/>
+            <line x1="6" y1="12" x2="11" y2="12" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M13 14l2 2m0-2l-2 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="btn-text">
+          <span class="btn-label">Full Page</span>
+          <span class="btn-desc">Capture entire scrollable page</span>
+        </div>
+        <span class="shortcut" id="shortcut-full"></span>
+      </button>
+
+      <button id="btn-visible" class="action-btn">
+        <div class="btn-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <rect x="2" y="3" width="16" height="14" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.2"/>
+            <circle cx="10" cy="10" r="1" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="btn-text">
+          <span class="btn-label">Visible Area</span>
+          <span class="btn-desc">Capture current viewport only</span>
+        </div>
+        <span class="shortcut" id="shortcut-visible"></span>
+      </button>
+    </div>
+
+    <div class="footer">
+      <button id="btn-settings" class="settings-btn">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M7 9a2 2 0 100-4 2 2 0 000 4z" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M5.7 1.3l-.3 1.2a4.5 4.5 0 00-1 .6L3.2 2.7l-1.3 1.3.4 1.2a4.5 4.5 0 00-.6 1l-1.2.3v1.8l1.2.3a4.5 4.5 0 00.6 1l-.4 1.2 1.3 1.3 1.2-.4a4.5 4.5 0 001 .6l.3 1.2h1.8l.3-1.2a4.5 4.5 0 001-.6l1.2.4 1.3-1.3-.4-1.2a4.5 4.5 0 00.6-1l1.2-.3V5.5l-1.2-.3a4.5 4.5 0 00-.6-1l.4-1.2-1.3-1.3-1.2.4a4.5 4.5 0 00-1-.6L7.5 1.3H5.7z" stroke="currentColor" stroke-width="1"/>
+        </svg>
+        <span>Settings</span>
+      </button>
+    </div>
+
+    <!-- Settings panel (hidden by default) -->
+    <div id="settings-panel" class="settings-panel hidden">
+      <div class="setting-row">
+        <label>Default format</label>
+        <select id="setting-format">
+          <option value="png">PNG</option>
+          <option value="jpeg">JPEG</option>
+        </select>
+      </div>
+      <div class="setting-row" id="jpeg-quality-row">
+        <label>JPEG quality</label>
+        <div class="slider-group">
+          <input type="range" id="setting-quality" min="60" max="100" value="90">
+          <span id="quality-value">90%</span>
+        </div>
+      </div>
+      <div class="setting-row">
+        <label>Theme</label>
+        <select id="setting-theme">
+          <option value="system">System</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </div>
+      <div class="privacy-notice">
+        <div class="privacy-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M8 1L3 3v4c0 3.5 2 6 5 7 3-1 5-3.5 5-7V3l-5-2z" stroke="currentColor" stroke-width="1.3" fill="none"/>
+            <path d="M6 8l1.5 1.5L11 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="privacy-text">
+          <strong>Privacy First</strong>
+          <p>All screenshots are processed locally on your device. No data is sent to external servers or cloud services.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Status/error message -->
+    <div id="status" class="status hidden"></div>
+  </div>
+
+  <script src="../shared/constants.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

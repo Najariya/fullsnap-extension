@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FullSnap – Privacy Policy</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #f8f9fa;
+      color: #212529;
+      line-height: 1.7;
+    }
+
+    header {
+      background: #1A2942;
+      color: white;
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    header .logo-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    header .accent { color: #00D4FF; }
+
+    header p {
+      font-size: 15px;
+      color: #a0b4cc;
+    }
+
+    main {
+      max-width: 760px;
+      margin: 48px auto;
+      padding: 0 24px 80px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      padding: 40px 48px;
+    }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1A2942;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #e9ecef;
+    }
+
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1A2942;
+      margin: 28px 0 8px;
+    }
+
+    p { margin-bottom: 14px; color: #495057; }
+
+    ul {
+      margin: 8px 0 16px 20px;
+      color: #495057;
+    }
+
+    ul li { margin-bottom: 6px; }
+
+    .highlight-box {
+      background: #e8f8ff;
+      border-left: 4px solid #00D4FF;
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 15px;
+      color: #1A2942;
+      font-weight: 500;
+    }
+
+    .updated {
+      font-size: 13px;
+      color: #868e96;
+      margin-top: 32px;
+      padding-top: 16px;
+      border-top: 1px solid #e9ecef;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 13px;
+      color: #868e96;
+    }
+
+    footer a { color: #00D4FF; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .card { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo-row">
+    <!-- Camera + document icon inline -->
+    <svg width="36" height="36" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+      <rect width="128" height="128" rx="22" fill="#253556"/>
+      <rect x="26" y="18" width="60" height="76" rx="6" fill="white" opacity="0.97"/>
+      <polygon points="70,18 86,34 70,34" fill="#C8D8F0"/>
+      <line x1="34" y1="44" x2="62" y2="44" stroke="#B0C4DE" stroke-width="3" stroke-linecap="round"/>
+      <line x1="34" y1="53" x2="68" y2="53" stroke="#B0C4DE" stroke-width="3" stroke-linecap="round"/>
+      <line x1="34" y1="62" x2="64" y2="62" stroke="#B0C4DE" stroke-width="3" stroke-linecap="round"/>
+      <line x1="34" y1="71" x2="58" y2="71" stroke="#B0C4DE" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="83" cy="88" r="22" fill="#1A2942" stroke="#00D4FF" stroke-width="2.5"/>
+      <circle cx="83" cy="88" r="9" fill="#00D4FF" opacity="0.9"/>
+      <circle cx="83" cy="88" r="4" fill="white" opacity="0.95"/>
+    </svg>
+    <h1>Full<span class="accent">Snap</span></h1>
+  </div>
+  <p>Full Page Screenshot &amp; Annotation Tool for Chrome</p>
+</header>
+
+<main>
+  <div class="card">
+    <h2>Privacy Policy</h2>
+
+    <div class="highlight-box">
+      🔒 FullSnap is 100% local. Your screenshots never leave your device. No data is sent to any server, ever.
+    </div>
+
+    <h3>What data does FullSnap collect?</h3>
+    <p><strong>None.</strong> FullSnap does not collect, transmit, or store any personal data on external servers of any kind.</p>
+
+    <h3>What happens when you take a screenshot?</h3>
+    <p>When you use FullSnap to capture a page:</p>
+    <ul>
+      <li>The screenshot image is processed entirely within your browser using Chrome's built-in APIs.</li>
+      <li>The image is stored temporarily in your browser's local IndexedDB storage so the viewer can display it.</li>
+      <li>The image is automatically deleted from IndexedDB once you close the viewer tab.</li>
+      <li>The image is never uploaded, transmitted, or shared with any third party — including the developer.</li>
+    </ul>
+
+    <h3>Settings storage</h3>
+    <p>Your preferences (e.g. default format, JPEG quality, theme) are saved locally using <code>chrome.storage.local</code> — a browser-native storage API. This data stays on your device and is never synced to any server.</p>
+
+    <h3>Network access</h3>
+    <p>FullSnap makes <strong>zero outbound network requests</strong>. There are no analytics libraries, no crash reporters, no telemetry endpoints, and no external CDN dependencies. The extension is entirely self-contained.</p>
+
+    <h3>Permissions explained</h3>
+    <ul>
+      <li><strong>activeTab</strong> — Required to access the currently active tab in order to capture it. Only activates when you explicitly click the extension button or use a keyboard shortcut.</li>
+      <li><strong>scripting</strong> — Required to inject a small content script into the page to scroll it and measure its dimensions during a full-page capture. The script does not read page content.</li>
+      <li><strong>offscreen</strong> — Required to create an off-screen canvas document (a Chrome MV3 API) to stitch multiple screenshot segments into a single image.</li>
+      <li><strong>storage</strong> — Required to save your extension preferences (format, quality, theme) locally on your device.</li>
+      <li><strong>&lt;all_urls&gt;</strong> — Required because users can capture screenshots of any website. The extension only acts when you initiate a capture — it does not run passively on pages or collect any page data.</li>
+    </ul>
+
+    <h3>Children's privacy</h3>
+    <p>FullSnap does not collect any data from anyone, including children. The extension has no user accounts, no login, and no data transmission of any kind.</p>
+
+    <h3>Changes to this policy</h3>
+    <p>If the privacy practices of FullSnap change, this page will be updated. Given the nature of this extension (no data collection), significant changes are not anticipated.</p>
+
+    <h3>Contact</h3>
+    <p>If you have questions about this privacy policy, please open an issue on the <a href="https://github.com/Najariya/fullsnap-extension" style="color:#1A6FD4">GitHub repository</a>.</p>
+
+    <p class="updated">Last updated: February 2026</p>
+  </div>
+</main>
+
+<footer>
+  <p>FullSnap &copy; 2026 &nbsp;·&nbsp; <a href="https://github.com/Najariya/fullsnap-extension">View on GitHub</a></p>
+</footer>
+
+</body>
+</html>

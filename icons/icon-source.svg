@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- Background: dark navy rounded square (Chrome uses square crop for toolbar) -->
+  <rect width="128" height="128" rx="22" fill="#1A2942"/>
+
+  <!-- Subtle outer glow ring -->
+  <rect x="6" y="6" width="116" height="116" rx="18" fill="none" stroke="#00D4FF" stroke-width="1.5" opacity="0.25"/>
+
+  <!-- Document / page body (white card) -->
+  <rect x="26" y="18" width="60" height="76" rx="6" fill="white" opacity="0.97"/>
+
+  <!-- Folded corner (dog-ear) -->
+  <polygon points="70,18 86,34 70,34" fill="#C8D8F0"/>
+  <line x1="70" y1="18" x2="86" y2="34" stroke="#A0B8D8" stroke-width="1"/>
+
+  <!-- Text lines on document -->
+  <line x1="34" y1="44" x2="62" y2="44" stroke="#B0C4DE" stroke-width="3" stroke-linecap="round"/>
+  <line x1="34" y1="53" x2="68" y2="53" stroke="#B0C4DE" stroke-width="3" stroke-linecap="round"/>
+  <line x1="34" y1="62" x2="64" y2="62" stroke="#B0C4DE" stroke-width="3" stroke-linecap="round"/>
+  <line x1="34" y1="71" x2="58" y2="71" stroke="#B0C4DE" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Camera / capture badge (bottom-right, overlapping document) -->
+  <circle cx="83" cy="88" r="22" fill="#1A2942" stroke="#00D4FF" stroke-width="2.5"/>
+
+  <!-- Camera lens outer ring -->
+  <circle cx="83" cy="88" r="13" fill="none" stroke="#00D4FF" stroke-width="2" opacity="0.6"/>
+
+  <!-- Camera lens fill -->
+  <circle cx="83" cy="88" r="9" fill="#00D4FF" opacity="0.9"/>
+
+  <!-- Lens highlight (inner white circle) -->
+  <circle cx="83" cy="88" r="4" fill="white" opacity="0.95"/>
+
+  <!-- Tiny specular dot -->
+  <circle cx="80" cy="85" r="1.5" fill="white" opacity="0.6"/>
+</svg>
